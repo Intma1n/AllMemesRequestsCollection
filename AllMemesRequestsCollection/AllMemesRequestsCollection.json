@@ -1,0 +1,470 @@
+{
+  "info": {
+    "_postman_id": "4924c535-35d6-4326-9bd7-51b35272a64e",
+    "name": "AllMemes",
+    "description": "1.\tАвторизация:\nPOST запрос:\nhttp://127.0.0.1:8000/auth/\nв body:\nkey: value\nusername:  <username>\npassword:  <password>\nВозвращает:\n“token”: “ваш токен”",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authorization",
+      "item": [
+        {
+          "name": "Authorization",
+          "_postman_id": "c8458edd-6c13-456b-a2ef-fabdca1300fc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "NewUser",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "password123",
+                  "type": "text"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://127.0.0.1:8000/auth/",
+            "description": "Авторизация:\nPOST запрос:\nhttp://127.0.0.1:8000/auth/\nв body:\nkey: value\nusername:  <username>\npassword:  <password>\nВозвращает:\n“token”: “ваш токен”"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "4d053022-9e71-41aa-b265-f0fa7c6ee144"
+    },
+    {
+      "name": "Registration",
+      "item": [
+        {
+          "name": "Get_users",
+          "_postman_id": "72f3ca88-6630-4c30-a860-ea23965715a6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "YourToken",
+                "type": "text"
+              }
+            ],
+            "url": "http://127.0.0.1:8000/api/users",
+            "description": "Регистрация\nGET запрос:\nhttp://127.0.0.1:8000/api/users\nобязательно в Headers:\nkey: value\nAuthorization: Token <token> (пробел обязателен)\nВозвращает:\n{\n{\n“id”: <id пользователя1>\n“username”: <Ваш юзернэйм1>\n},\n{\n“id”: <id пользователя2>\n“username”: <Ваш юзернэйм2>\n},\n}\nПароль намеренно не выводится в целях безопасности.\nПример:"
+          },
+          "response": []
+        },
+        {
+          "name": "Register_new_user",
+          "_postman_id": "4bae3a49-df1d-4a06-b200-ffa16737828f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "username",
+                "value": "YourUsername",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "password",
+                "value": "YourPassword",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "your_username",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "your_password",
+                  "type": "text"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://127.0.0.1:8000/api/users/",
+            "description": "POST запрос (для создания нового пользователя – регистрации):\nhttp://127.0.0.1:8000/api/users/\nСейчас есть баг и для того, чтобы зарегать кого-то, всё равно нужно передавать токен в хедере. Я это пофикшу, а пока передавай токен…\nВ body:\nUsername: <ваш юзернэйм>\nPassword: <ваш пароль>\nВозвращает:\nId: <айди нового юзверя>\nUsername: <username нового юзверя>\nПример:"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete_user",
+          "_postman_id": "517c4fe4-40ee-4ab4-8387-93c66364e502",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/users/${user_id}"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "843b5d2e-0827-479e-8223-5f54412369f2"
+    },
+    {
+      "name": "Memes",
+      "item": [
+        {
+          "name": "Get_memes",
+          "_postman_id": "7fb212ca-54f7-4857-b1ad-208cff60f6b1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "your_token",
+                "type": "text"
+              }
+            ],
+            "url": "http://127.0.0.1:8000/api/memes",
+            "description": "GET:\nhttp://127.0.0.1:8000/api/memes\nHeaders:\nAuthorization: your_token\nВозвращает:\nId мема, путь, дату публикации, массив тегов (для каждого тега айдишник, название мема, массив мемов, к которым относится данный тег), массив лайков, количество лайков."
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "f664adb4-c5e3-4e8b-9fc9-ad2752e44dbe"
+    },
+    {
+      "name": "Tags",
+      "item": [
+        {
+          "name": "Get_tags",
+          "_postman_id": "40afa942-4f32-4153-8f9f-4fe89210f4a1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "your_token",
+                "type": "text"
+              }
+            ],
+            "url": null,
+            "description": "GET запрос:\nhttp://127.0.0.1:8000/api/tags\nВ headers:\nAuthorization: your_token\nВозвращает:\nАйдишник, название мема, на какие мемы распространяется:"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "e6c3f555-bb13-4928-a88b-63842c6f6690"
+    },
+    {
+      "name": "Likes",
+      "item": [
+        {
+          "name": "Get_likes",
+          "_postman_id": "82ac8e18-165e-4c5c-a38b-93914353cba6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": null,
+            "description": "GET Запрос:\nhttp://127.0.0.1:8000/api/likes\nHeaders: \nВозвращает:\nАйди мема, айди пользователя, что поставил лайк, булевое значение лайк (всегда тру, надо его нахрен убрать)"
+          },
+          "response": []
+        },
+        {
+          "name": "Add_like",
+          "_postman_id": "9ce80d37-c151-4310-a8e1-dfc5ccf9894d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "meme",
+                  "value": "meme_id",
+                  "type": "text"
+                },
+                {
+                  "key": "user",
+                  "value": "user_id",
+                  "type": "text"
+                },
+                {
+                  "key": "like",
+                  "value": "True",
+                  "type": "text"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://127.0.0.1:8000/api/likes/",
+            "description": "POST:\nhttp://127.0.0.1:8000/api/likes/\nВ body:\nMeme: айдишник мема, которому лайк\nUser: айдишник юзверя, что поставил лайк\nLike: всегда тру\nВозвращает:\nИнформацию о созданном меме:"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "a871a4f6-05e4-4539-9087-f7dd789bc6b3"
+    },
+    {
+      "name": "Favorites",
+      "item": [
+        {
+          "name": "Get_favorites",
+          "_postman_id": "7b50fb62-f202-42e9-87a6-8fcf6c415337",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": null,
+            "description": "GET:\nhttp://127.0.0.1:8000/api/bookmarks\nHeaders:\nВозвращает:\nАйди пользователя, что добавил мем в закладки\nАйди мема, что пользователь добавил в закладки"
+          },
+          "response": []
+        },
+        {
+          "name": "Add_to_favorites",
+          "_postman_id": "4fd60873-97e8-4b44-b837-78cc0ee40a28",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/bookmarks/",
+            "description": "POST:\nhttp://127.0.0.1:8000/api/bookmarks/\nbody:\nuser: id юзера\nmeme: id мема\nВозвращает:\nИнфу о созданном сохранении:"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "5bb4b326-5c79-4a2f-bae1-7dceeaa00c61"
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Get_comments",
+          "_postman_id": "a2b60aa8-d5e2-401a-a9c1-1260749faed6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": null,
+            "description": "GET:\nhttp://127.0.0.1:8000/api/comments\nHeaders:\nВозвращает:\nАйди коммента, айди мема, айди пользователя, текст комментария:"
+          },
+          "response": []
+        },
+        {
+          "name": "Leave_comment",
+          "_postman_id": "17795cf4-914a-4206-aa9f-c800bccbabd7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "meme",
+                  "value": "meme_id",
+                  "type": "text"
+                },
+                {
+                  "key": "user",
+                  "value": "user_id",
+                  "type": "text"
+                },
+                {
+                  "key": "comment",
+                  "value": "comment_text",
+                  "type": "text"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": null,
+            "description": "POST Запрос:\nHeaders такой же\nBody:\nMeme: айди мема\nUser: айди юзверя\nComment: текст коммента\nВозвращает:\nИнфу о новом созданном комментарии:"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "2510c3f6-6a70-4a2d-bfd2-6f8a155a1084"
+    },
+    {
+      "name": "Rooms",
+      "item": [
+        {
+          "name": "Get_rooms",
+          "_postman_id": "4159e8e7-9203-4662-9e41-cbe4f8ff7c5f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": null,
+            "description": "Комнаты:\nhttp://127.0.0.1:8000/api/rooms/\nХедерс как обычно\nВозвращает:\nАйдишник комнаты\nПервого пользователя (который создал комнату)\nВторого пользователя – которого пригласили"
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "_postman_id": "3a3cc0bb-1698-4397-879a-5743de1a63c2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "first_user",
+                  "value": "",
+                  "type": "text"
+                },
+                {
+                  "key": "second_user",
+                  "value": "",
+                  "type": "text"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://127.0.0.1:8000/api/rooms/",
+            "description": "Создание комнаты для двух конкретных юзеров"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "37d6ad05-09d7-4830-beee-96e94550d838"
+    },
+    {
+      "name": "Messages",
+      "item": [
+        {
+          "name": "Get_messages",
+          "_postman_id": "92ce9c14-5293-490d-a971-7bf4aa10fb03",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": null,
+            "description": "GET:\nhttp://127.0.0.1:8000/api/messages\nВ хедерсах как обычно.\nВозвращает:\nАйдишник сообщения,\nАйдишник пользователя, который отправил сообщение\nАйдишник пользователя, который получил сообщение\nТекст сообщения\nАйдишник Комнаты, в которой это сообщение было написано:"
+          },
+          "response": []
+        },
+        {
+          "name": "Send_message",
+          "_postman_id": "664660a6-50f8-482c-ac42-eeee7fc7df5e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "sender",
+                "value": "sender_user_id",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "receiving",
+                "value": "reciever_user_id",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "text",
+                "value": "message_text",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "chat_room",
+                "value": "chat_room_id",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "sender",
+                  "value": "sender_user_id",
+                  "type": "text"
+                },
+                {
+                  "key": "receiving",
+                  "value": "reciever_user_id",
+                  "type": "text"
+                },
+                {
+                  "key": "text",
+                  "value": "message_text",
+                  "type": "text"
+                },
+                {
+                  "key": "chat_room",
+                  "value": "chat_room_id",
+                  "type": "text"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": null
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "8dd7e531-8e94-4ad3-a3d3-7d3f3287b91d"
+    }
+  ]
+}
